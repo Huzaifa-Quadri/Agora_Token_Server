@@ -17,11 +17,11 @@ var appID string
 var appCertificate string
 
 func init() {
-	os.Setenv("APP_ID", "************ Put Your APP_ID Here ************")
-	os.Setenv("APP_CERTIFICATE", "************ Put Your APP_ID Here ************")
+	// os.Setenv("APP_ID", "************ Put Your APP_ID Here ************")
+	// os.Setenv("APP_CERTIFICATE", "************ Put Your APP_ID Here ************")
 	// loads values from .env into the system
 	if err := godotenv.Load(); err != nil {
-		log.Print("No .env file found")
+		log.Print("No .env file found, using system environment variables")
 	}
 }
 
@@ -40,7 +40,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080"
+		port = "8080" // Default to 8080 if PORT is not set
 	}
 
 	api.GET("/ping", func(c *gin.Context) {
